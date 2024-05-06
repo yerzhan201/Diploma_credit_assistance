@@ -1,0 +1,5 @@
+<!-- res/drawable/selector_outcome.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:drawable="@drawable/backgroun_outcome_selected"/>
+    <item android:drawable="@drawable/backgroun_outcome"/>
+</selector>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mini_card"
+        android:layout_width="160dp"
+        android:layout_height="90dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginStart="10dp"
+        app:cardBackgroundColor="#FFFFFF">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/loan_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:id="@+id/expand"
+                android:layout_width="9dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="130dp"
+
+                android:layout_marginTop="15dp"
+                android:src="@drawable/expand_right" />
+            <View
+                android:id="@+id/graph_view"
+                android:layout_width="100dp"
+                android:layout_height="5dp"
+                android:layout_below="@id/loan_amount"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="15dp"
+                android:background="#FF0000" />
+
+            <TextView
+                android:id="@+id/loan_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_marginStart="15dp"
+                android:layout_below="@id/loan_name"
+                android:layout_marginTop="5dp" />
+            <!-- Your card content here -->
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
+
+
+

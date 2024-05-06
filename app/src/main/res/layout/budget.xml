@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6F8"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/budget_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/white_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="0dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="20dp"
+
+                    app:cardElevation="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp">
+
+                        <TextView
+                            android:id="@+id/total_balance_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="40dp"
+                            android:gravity="center"
+                            android:text="My Budget"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:id="@+id/Plan"
+                            android:layout_width="160dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="90dp"
+                            android:background="@drawable/selector_income">
+
+
+
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/get_started_string1"
+                                    android:layout_width="150dp"
+                                    android:layout_height="24.6dp"
+                                    android:layout_centerInParent="true"
+
+                                    android:layout_gravity="center_horizontal|center"
+                                    android:gravity="center"
+                                    android:text="Plan"
+                                    android:textColor="@color/selector_text_color"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/remain"
+                            android:layout_width="160dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="200dp"
+                            android:layout_marginTop="90dp"
+                            android:background="@drawable/selector_outcome">
+
+
+
+                            <RelativeLayout
+                                android:layout_width="160dp"
+                                android:layout_height="50dp"
+                                android:layout_centerInParent="true">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/get_started_string2"
+                                        android:layout_width="150dp"
+                                        android:layout_height="24.6dp"
+                                        android:layout_marginStart="5dp"
+                                        android:gravity="center"
+                                        android:text="Remain"
+                                        android:textColor="@color/selector_text_color"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/num_transaction"
+                            android:layout_width="340dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/remain"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="10dp">
+
+
+
+                            <EditText
+                                android:id="@+id/input_number"
+                                android:layout_width="330dp"
+                                android:layout_height="50dp"
+                                android:layout_centerInParent="true"
+                                android:hint="Enter your earnings"
+                                android:textColor="#707070"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:textSize="20sp"
+                                android:background="@drawable/background_4"/>
+
+                        </RelativeLayout>
+
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/white_block2"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:layout_below="@id/white_block"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/Planning"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:text="Planned expenses"
+                            android:textColor="#000000"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/PlanningLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_below="@+id/Planning"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginTop="15dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+
+                                <EditText
+                                    android:id="@+id/Plansum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:hint="₸0.00"
+                                    android:textColor="#000000"
+                                    android:textSize="35sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/Plancomment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:hint="0 left to budget"
+                                    android:textColor="#000000"
+                                    android:layout_below="@+id/Plansum"
+                                    android:textSize="16sp"
+                                    android:layout_marginTop="10dp"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <RelativeLayout
+                                    android:id="@+id/progressLayout"
+                                    android:layout_width="130dp"
+                                    android:layout_height="130dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginEnd="0dp">
+
+                                    <ProgressBar
+                                        android:id="@+id/circularProgressbar"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:indeterminate="false"
+                                        android:max="100"
+                                        android:progress="50"
+                                        android:progressDrawable="@drawable/circular"
+                                        android:secondaryProgress="100" />
+
+                                    <TextView
+                                        android:id="@+id/percentage"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+
+                                        android:textColor="#009951"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                </RelativeLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/planning_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/PlanningLayout"
+                            android:orientation="horizontal"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp">
+
+                            <TextView
+                                android:id="@+id/Plannin2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="20dp"
+                                android:gravity="start"
+                                android:text="Home"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                android:textStyle="normal" />
+
+
+                            <TextView
+                                android:id="@+id/line"
+                                android:textSize="16sp"
+                                android:textColor="#000000"
+                                android:layout_width="0dp"
+                                android:layout_height="25.6dp"
+                                android:layout_weight="1"
+                                android:layout_marginTop="20dp"
+                                android:text="_______________________________"
+                                android:gravity="center" />
+                            <TextView
+                                android:id="@+id/plan_text_category"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="20dp"
+                                android:gravity="end"
+
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                android:textStyle="normal"  />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/planning_layout2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/planning_layout"
+                            android:orientation="horizontal"
+                            android:paddingStart="30dp"
+                            android:paddingEnd="30dp">
+
+                            <TextView
+                                android:id="@+id/Plannin3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="20dp"
+                                android:gravity="start"
+                                android:text="Loan"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/line2"
+                                android:textSize="16sp"
+                                android:textColor="#000000"
+                                android:layout_width="0dp"
+                                android:layout_height="25.6dp"
+                                android:layout_weight="1"
+                                android:layout_marginTop="20dp"
+                                android:text="_______________________________"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/plan_text_category2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="20dp"
+                                android:gravity="end"
+
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/white_block3"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_below="@id/white_block2"
+                    android:layout_marginTop="20dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/housing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Housing"
+                            android:textSize="20sp"
+                            android:layout_marginStart="30dp"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            android:layout_marginTop="20dp"/>
+                        <RelativeLayout
+                            android:id="@+id/arenda"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="60dp"
+                            android:layout_marginStart="30dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+
+                                android:text="Home"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                            <RelativeLayout
+                                android:id="@+id/home_input"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="30dp"
+                                android:layout_alignParentEnd="true"
+                                >
+
+
+
+                                <EditText
+                                    android:id="@+id/input_home"
+                                    android:layout_width="340dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:hint="0.00 ₸"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:textSize="20sp"
+                                    android:background="@drawable/background_4"/>
+
+
+                            </RelativeLayout></RelativeLayout>
+                            <RelativeLayout
+                                android:id="@+id/kommunalka"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/arenda"
+
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="30dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+
+                                    android:text="Коммуналка"
+                                    android:textColor="#000000"
+                                    android:textSize="18sp"
+                                    android:textStyle="normal" />
+                                <RelativeLayout
+                                    android:id="@+id/com_input"
+                                    android:layout_width="100dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginEnd="30dp"
+                                    android:layout_alignParentEnd="true"
+                                    >
+
+
+
+                                    <EditText
+                                        android:id="@+id/input_com"
+                                        android:layout_width="340dp"
+                                        android:layout_height="50dp"
+                                        android:layout_centerInParent="true"
+                                        android:hint="0.00 ₸"
+                                        android:gravity="center"
+                                        android:inputType="number"
+                                        android:textSize="20sp"
+                                        android:background="@drawable/background_4"/>
+
+
+                                </RelativeLayout>
+
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/internet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/kommunalka"
+
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="30dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+
+                                android:text="Internet"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                            <RelativeLayout
+                                android:id="@+id/com_internet"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="30dp"
+                                android:layout_alignParentEnd="true"
+                                >
+
+
+
+                                <EditText
+                                    android:id="@+id/input_internet"
+                                    android:layout_width="340dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:hint="0.00 ₸"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:textSize="20sp"
+                                    android:background="@drawable/background_4"/>
+
+
+                            </RelativeLayout>
+
+
+
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/white_block4"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_below="@id/white_block3"
+                    android:layout_marginTop="20dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/Loans"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Loans"
+                            android:textSize="20sp"
+                            android:layout_marginStart="30dp"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            android:layout_marginTop="20dp"/>
+                        <RelativeLayout
+                            android:id="@+id/kaspi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="60dp"
+                            android:layout_marginStart="30dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+
+                                android:text="kaspi"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                            <RelativeLayout
+                                android:id="@+id/kaspi_input"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="30dp"
+                                android:layout_alignParentEnd="true"
+                                >
+
+
+
+                                <EditText
+                                    android:id="@+id/input_kaspi"
+                                    android:layout_width="340dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:hint="0.00 ₸"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:textSize="20sp"
+                                    android:background="@drawable/background_4"/>
+
+
+                            </RelativeLayout></RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/forte"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/kaspi"
+
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="30dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+
+                                android:text="forte"
+                                android:textColor="#000000"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+                            <RelativeLayout
+                                android:id="@+id/forte_input"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="30dp"
+                                android:layout_alignParentEnd="true"
+                                >
+
+
+
+                                <EditText
+                                    android:id="@+id/input_forte"
+                                    android:layout_width="340dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:hint="0.00 ₸"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:textSize="20sp"
+                                    android:background="@drawable/background_4"/>
+
+
+                            </RelativeLayout>
+
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/halyk"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/forte"
+
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="30dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+
+                                android:text="halyk"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+                            <RelativeLayout
+                                android:id="@+id/com_halyk"
+                                android:layout_width="100dp"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="30dp"
+                                android:layout_alignParentEnd="true"
+                                >
+
+
+
+                                <EditText
+                                    android:id="@+id/input_halyk"
+                                    android:layout_width="340dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:hint="0.00 ₸"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:textSize="20sp"
+                                    android:background="@drawable/background_4"/>
+
+
+                            </RelativeLayout>
+
+
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:layout_height="70dp"
+        app:menu="@menu/bottom_navigation_menu"
+        app:itemIconSize="27dp"
+        android:layout_gravity="bottom"
+        app:labelVisibilityMode="labeled"
+        android:layout_alignParentBottom="true"/>
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

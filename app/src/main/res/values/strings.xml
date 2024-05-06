@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- login strings -->
+
+	<string name="app_name">Page 2</string>
+	<string name="ek_img_content">ExportKit Image</string>
+	<string name="forgot_password__string">Forgot password?</string>
+	<string name="sign_in_string">Sign in</string>
+	<string name="reg">Register</string>
+	<string name="label_string">Customer ID</string>
+	<string name="label_ek1_string">Password</string>
+	<string name="get_started_string">Sign in</string>
+	<string name="get_started_ek1_string">Create account</string>
+	<string name="fin_keep_string">fin keep</string>
+    <string name="sign_in">Sign in</string>
+	<string name="app_name1">Page 2</string>
+	<string name="ek_img_content1">ExportKit Image</string>
+	<string name="_____________________________string"> Выберите валюту по умолчанию  </string>
+	<string name="_________string">Поиск... </string>
+	<string name="time_string">9:41</string>
+	<string name="get_started_string1">Continue</string>
+	<string name="single_account_string">  (RUB)</string>
+	<string name="joint_account_string">  (USD)</string>
+	<string name="i_m_looking_for_a_string">Im looking for a</string>
+	<string name="joint_account_ek1_string">  (KZT)</string>
+	<string name="joint_account_ek2_string">  (JPY)</string>
+	<string name="joint_account_ek3_string">  (TRY)</string>
+
+</resources>

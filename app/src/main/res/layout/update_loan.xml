@@ -1,0 +1,192 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:ignore="MissingDefaultResource">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/white_block_1"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="0dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="#FFFFFF">
+                <ImageView
+                    android:id="@+id/back_1"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="30dp"
+
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/back" />
+                <ImageView
+                    android:id="@+id/logo_1"
+                    android:layout_width="105dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/logo"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/update_loan_card"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="20dp"
+                android:layout_below="@id/white_block_1"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="0dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/loan_name1"
+                        android:layout_width="342dp"
+                        android:layout_height="48dp"
+                        android:layout_centerHorizontal="true"
+                        android:hint="Loan name"
+                        android:paddingStart="15dp"
+                        android:layout_marginTop="20dp"
+                        android:inputType="text"
+                        android:background="@drawable/input_field" />
+                    <EditText
+                        android:id="@+id/bank_name1"
+                        android:layout_width="342dp"
+                        android:layout_height="48dp"
+                        android:layout_centerHorizontal="true"
+                        android:hint="Bank name"
+                        android:paddingStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/loan_name1"
+                        android:inputType="text"
+                        android:background="@drawable/input_field" />
+                    <EditText
+                        android:id="@+id/loan_amount1"
+                        android:layout_width="342dp"
+                        android:layout_height="48dp"
+                        android:layout_centerHorizontal="true"
+                        android:hint="Amount of loan"
+                        android:paddingStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/bank_name1"
+                        android:digits="0123456789."
+                        android:inputType="number"
+                        android:background="@drawable/input_field" />
+                    <EditText
+                        android:id="@+id/monthly_payment1"
+                        android:layout_width="342dp"
+                        android:layout_height="48dp"
+                        android:layout_centerHorizontal="true"
+                        android:hint="Monthly payment"
+                        android:paddingStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:digits="0123456789."
+                        android:layout_below="@id/loan_amount1"
+                        android:inputType="number"
+                        android:background="@drawable/input_field" />
+                    <Button
+                        android:id="@+id/loan_date1"
+                        android:layout_width="342dp"
+                        android:layout_height="48dp"
+                        android:layout_centerHorizontal="true"
+                        android:hint="Date"
+                        android:onClick="showDatePickerDialog"
+                        android:paddingStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingTop="11dp"
+                        android:textSize="18sp"
+                        android:layout_below="@id/monthly_payment1"
+                        android:inputType="text"
+                        android:background="@drawable/input_field"
+                        android:gravity="start"
+                        android:textStyle="normal"/>
+                    <LinearLayout
+                        android:layout_width="342dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/loan_date1"
+
+                        android:layout_centerHorizontal="true">
+
+                        <EditText
+                            android:id="@+id/loan_term1"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:digits="0123456789."
+                            android:hint="Loan Term"
+                            android:paddingStart="15dp"
+                            android:inputType="number"
+                            android:background="@drawable/input_field" />
+
+                        <Spinner
+                            android:id="@+id/unit_spinner"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:entries="@array/loan_term_units"
+                            android:background="@drawable/input_field" />
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+
+                <Button
+                    android:id="@+id/update_loan_button"
+                    android:layout_width="342dp"
+                    android:layout_height="60dp"
+                    android:layout_above="@+id/delete_button"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/rectangle_2_ek2_shape"
+                    android:text="Update"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/delete_button"
+                    android:layout_width="342dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:text="Delete"
+                    android:textAllCaps="false"
+                    android:textColor="#FF0000"
+                    android:textSize="16sp"
+                    android:paddingBottom="20dp"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

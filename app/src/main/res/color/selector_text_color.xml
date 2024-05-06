@@ -1,0 +1,5 @@
+<!-- res/color/selector_text_color.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:color="#FFFFFF"/> <!-- white when selected -->
+    <item android:color="#000000"/> <!-- black when not selected -->
+</selector>

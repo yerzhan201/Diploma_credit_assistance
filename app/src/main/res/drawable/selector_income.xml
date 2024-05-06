@@ -1,0 +1,6 @@
+<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<!-- res/drawable/selector_income.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:drawable="@drawable/backgroun_income_selected"/>
+    <item android:drawable="@drawable/backgroun_income"/>
+</selector>

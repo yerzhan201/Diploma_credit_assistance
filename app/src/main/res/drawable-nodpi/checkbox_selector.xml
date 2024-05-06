@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ellipse_17_ek4_shape" android:state_checked="false"/>
+    <item android:drawable="@drawable/checkbox" android:state_checked="true"/>
+</selector>
