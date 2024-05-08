@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:id="@+id/main_layout"
+    tools:ignore="MissingDefaultResource">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/white_block"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="0dp"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardElevation="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp">
+
+                <ImageView
+                    android:id="@+id/back_1"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="30dp"
+
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/back" />
+                <TextView
+                    android:id="@+id/account_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:text="New account"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/new_loan_card"
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp"
+            android:layout_below="@id/white_block"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardElevation="0dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/Bank_name"
+                    android:layout_width="342dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:hint="Bank name"
+                    android:paddingStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:inputType="text"
+                    android:background="@drawable/input_field" />
+                <EditText
+                    android:id="@+id/Balance"
+                    android:layout_width="342dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:hint="Balance"
+                    android:paddingStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/Bank_name"
+                    android:inputType="number"
+                    android:digits="0123456789."
+                    android:enabled="true"
+                    android:background="@drawable/input_field" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Balance"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Color"
+                        android:textColor="#000000"
+
+                        android:textSize="17sp"
+                        android:layout_marginStart="30dp"
+
+                        android:layout_marginTop="20dp" />
+
+                    <!-- Color Card 1 -->
+                    <LinearLayout
+                        android:id="@+id/colorpicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/color"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="30dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/color1"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            app:cardBackgroundColor="#FF1C45"
+                            android:layout_marginStart="30dp"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="10dp"
+                            android:layout_weight="1" >
+                            <ImageView
+                                android:id="@+id/check1"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check"
+                                android:visibility="gone" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/color2"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            app:cardBackgroundColor="#FF6347"
+                            android:layout_marginStart="10dp"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="10dp"
+                            android:layout_weight="1" >
+                            <ImageView
+                                android:id="@+id/check2"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check"
+                                android:visibility="gone" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/color3"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            app:cardBackgroundColor="#FFD700"
+                            android:layout_marginStart="10dp"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="10dp"
+                            android:layout_weight="1" >
+                            <ImageView
+                                android:id="@+id/check3"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check"
+                                android:visibility="gone" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/color4"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            app:cardBackgroundColor="#32CD32"
+                            android:layout_marginStart="10dp"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="10dp"
+                            android:layout_weight="1" >
+
+                            <ImageView
+                                android:id="@+id/check4"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check"
+                                android:visibility="gone" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/color5"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            app:cardBackgroundColor="#1E90FF"
+                            android:layout_marginStart="10dp"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="10dp"
+                            android:layout_weight="1" >
+                            <ImageView
+                                android:id="@+id/check5"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check"
+                                android:visibility="gone" />
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/colorpicker"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="30dp">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/color6"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            app:cardBackgroundColor="#9370DB"
+                            android:layout_marginStart="10dp"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="10dp"
+                            >
+                            <ImageView
+                                android:id="@+id/check6"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check"
+                                android:visibility="gone" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/color7"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            app:cardBackgroundColor="#FFC0CB"
+                            android:layout_marginStart="10dp"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="10dp"
+                            >
+                            <ImageView
+                                android:id="@+id/check7"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check"
+                                android:visibility="gone" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <Button
+                android:id="@+id/update_loan_button"
+                android:layout_width="342dp"
+                android:layout_height="60dp"
+                android:layout_above="@+id/delete_button"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/rectangle_2_ek2_shape"
+                android:text="Update"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="342dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:text="Delete"
+                android:textAllCaps="false"
+                android:textColor="#FF0000"
+                android:textSize="16sp"
+                android:paddingBottom="20dp"/>
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

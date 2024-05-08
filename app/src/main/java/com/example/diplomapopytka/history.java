@@ -1,7 +1,9 @@
 package com.example.diplomapopytka;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +34,9 @@ public class history extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+
         transactionList = findViewById(R.id.recyclerView);
         db = new DatabaseHelperTransactions(this);
         bottomNavigation = findViewById(R.id.bottom_navigation);
@@ -40,6 +46,7 @@ public class history extends AppCompatActivity {
 
         transactionList.setLayoutManager(new LinearLayoutManager(this));
         transactionList.setAdapter(transactionAdapter);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_history);
         bottomNavigation.setOnItemSelectedListener(item -> {
             // Handle navigation view item clicks here.
             int id = item.getItemId();

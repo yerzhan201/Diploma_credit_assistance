@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
 
     android:orientation="vertical"
     tools:ignore="MissingDefaultResource">
@@ -12,12 +12,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/block"
-        android:layout_width="330dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        app:cardCornerRadius="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="200dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="10dp"
+        app:cardCornerRadius="20dp"
+
 
 
         >
@@ -29,13 +28,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/white_block"
-                android:layout_width="330dp"
-                android:layout_height="200dp"
+                android:layout_width="200dp"
+                android:layout_height="130dp"
                 android:layout_centerInParent="true"
                 app:cardBackgroundColor="#FF4081"
 
 
-                app:cardCornerRadius="30dp"
+
+                app:cardCornerRadius="18dp"
                 android:background="@drawable/rounded_background"
 
 
@@ -58,6 +58,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        android:text="Sberbank"
                         android:textColor="#FFFFFF"
                         android:layout_marginTop="10dp"/>
 
@@ -65,9 +66,10 @@
                         android:id="@+id/balance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="35dp"
+                        android:layout_marginTop="15dp"
                         android:textColor="#FFFFFF"
-                        android:textSize="37sp"
+                        android:text="123456789"
+                        android:textSize="27sp"
                         android:textStyle="bold" />
 
 

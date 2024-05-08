@@ -1,6 +1,8 @@
 package com.example.diplomapopytka;
 
+import android.accounts.Account;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -125,12 +127,16 @@ public class main_page extends AppCompatActivity {
         // Fetch the loans from the database
         DatabaseHelper db = new DatabaseHelper(this);
         List<Loan> loans = db.getLoans();
+        List<account_card> accountCards = db.getAllAccounts();
 
         // Get the LinearLayout where you want to add the mini cards
         LinearLayout layout = findViewById(R.id.loans_view);
+        LinearLayout layout1 = findViewById(R.id.accounts_view);
 
         // Remove all existing views from the layout
         layout.removeAllViews();
+        double totalBalanceValue = 0;
+
 
         // Create a new mini card for each loan
         for (Loan loan : loans) {
@@ -141,7 +147,7 @@ public class main_page extends AppCompatActivity {
             TextView loanName = miniCard.findViewById(R.id.loan_name);
             loanName.setText(loan.getLoanName());
             TextView loanAmount = miniCard.findViewById(R.id.loan_amount);
-            loanAmount.setText(String.valueOf(loan.getloanAmount()));
+            loanAmount.setText(String.valueOf(loan.getloanAmount())+"₸");
             miniCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -154,5 +160,34 @@ public class main_page extends AppCompatActivity {
             // Add the mini card to the layout
             layout.addView(miniCard);
         }
+        for (account_card accountCard : accountCards) {
+            // Inflate the mini card layout
+            View miniCard = getLayoutInflater().inflate(R.layout.mini_account_card, layout, false);
+
+            // Set the account card details
+            TextView bankName = miniCard.findViewById(R.id.bank_name);
+            bankName.setText(accountCard.getBankName());
+            CardView white_block = miniCard.findViewById(R.id.white_block);
+            TextView balance = miniCard.findViewById(R.id.balance);
+            balance.setText("₸ " + String.valueOf(accountCard.getBalance()));
+            white_block.setBackgroundColor(Color.parseColor(accountCard.getColor()));
+            white_block.setRadius(30);
+            totalBalanceValue += Double.parseDouble(accountCard.getBalance());
+
+            miniCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Start the update_account_card activity
+                    Intent intent = new Intent(main_page.this, update_account_card.class);
+                    intent.putExtra("id", accountCard.getId());
+                    intent.putExtra("bankName", accountCard.getBankName());
+                    intent.putExtra("balance", accountCard.getBalance());
+                    intent.putExtra("color", accountCard.getColor());
+                    startActivity(intent);
+                }
+            });
+            layout1.addView(miniCard);
+        }
+        totalBalance.setText("₸ " + String.valueOf(totalBalanceValue));
     }
 }

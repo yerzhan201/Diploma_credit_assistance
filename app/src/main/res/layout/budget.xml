@@ -24,7 +24,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/white_block"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
+                    android:layout_height="150dp"
                     android:layout_marginTop="0dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="20dp"
@@ -48,88 +48,13 @@
                             android:textSize="22sp"
                             android:textStyle="bold" />
 
-                        <RelativeLayout
-                            android:id="@+id/Plan"
-                            android:layout_width="160dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginTop="90dp"
-                            android:background="@drawable/selector_income">
 
-
-
-
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/get_started_string1"
-                                    android:layout_width="150dp"
-                                    android:layout_height="24.6dp"
-                                    android:layout_centerInParent="true"
-
-                                    android:layout_gravity="center_horizontal|center"
-                                    android:gravity="center"
-                                    android:text="Plan"
-                                    android:textColor="@color/selector_text_color"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-
-
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/remain"
-                            android:layout_width="160dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="200dp"
-                            android:layout_marginTop="90dp"
-                            android:background="@drawable/selector_outcome">
-
-
-
-                            <RelativeLayout
-                                android:layout_width="160dp"
-                                android:layout_height="50dp"
-                                android:layout_centerInParent="true">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:gravity="center_vertical"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/get_started_string2"
-                                        android:layout_width="150dp"
-                                        android:layout_height="24.6dp"
-                                        android:layout_marginStart="5dp"
-                                        android:gravity="center"
-                                        android:text="Remain"
-                                        android:textColor="@color/selector_text_color"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
-                                </LinearLayout>
-
-                            </RelativeLayout>
-
-
-                        </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/num_transaction"
                             android:layout_width="340dp"
                             android:layout_height="50dp"
-                            android:layout_below="@id/remain"
+                            android:layout_below="@id/total_balance_text"
                             android:layout_centerInParent="true"
                             android:layout_marginTop="10dp">
 
@@ -245,6 +170,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerInParent="true"
+                                        android:gravity="center"
+                                        android:text="50%"
 
                                         android:textColor="#009951"
                                         android:textSize="20sp"
@@ -664,16 +591,21 @@
         </LinearLayout>
 
     </ScrollView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:background="#FFFFFF"
+
         android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_navigation_menu"
         app:itemIconSize="27dp"
         android:layout_gravity="bottom"
-        app:labelVisibilityMode="labeled"
-        android:layout_alignParentBottom="true"/>
+
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@drawable/navigation_item_icon_tint"
+        app:itemTextColor="@drawable/navigation_item_background"
+        app:labelVisibilityMode="labeled"/>
 
 
 

@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database name
-    private static final String DATABASE_NAME = "loansManager";
+    private static final String DATABASE_NAME = "loansManager.db";
 
     // Loans table name
     private static final String TABLE_LOANS = "loans";
@@ -50,6 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_LOANS_TABLE);
 
         String CREATE_ACCOUNTS_TABLE = "CREATE TABLE " + TABLE_NAME_ACCOUNT + "("
+                + KEY_ID + " INTEGER PRIMARY KEY,"
                 + COLUMN_BANK_NAME + " TEXT,"
                 + COLUMN_BALANCE + " REAL,"
                 + COLUMN_COLOR + " TEXT" + ")";
@@ -93,6 +94,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+    public int updateAccountCard(account_card accountCard) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BANK_NAME, accountCard.getBankName());
+        values.put(COLUMN_BALANCE, accountCard.getBalance());
+        values.put(COLUMN_COLOR, accountCard.getColor());
+
+        // Updating row
+        return db.update(TABLE_NAME_ACCOUNT, values, KEY_ID + " = ?",
+                new String[]{String.valueOf(accountCard.getId())});
+    }
+    public void deleteaccountcard(int accountid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME_ACCOUNT, KEY_ID + " = ?", new String[]{String.valueOf(accountid)});
+        db.close(); // Close the database connection
+    }
+
     public List<account_card> getAllAccounts() {
         String selectQuery = "SELECT  * FROM " + TABLE_NAME_ACCOUNT;
 
@@ -102,16 +121,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
+                int idIndex = cursor.getColumnIndex(KEY_ID);
                 int bankNameIndex = cursor.getColumnIndex(COLUMN_BANK_NAME);
                 int balanceIndex = cursor.getColumnIndex(COLUMN_BALANCE);
                 int colorIndex = cursor.getColumnIndex(COLUMN_COLOR);
 
                 // Check if the column indices are not -1 before trying to get the values from the cursor
                 if (bankNameIndex != -1 && balanceIndex != -1 && colorIndex != -1) {
+                    int id = cursor.getInt(idIndex);
+
                     String bankName = cursor.getString(bankNameIndex);
                     String balance = cursor.getString(balanceIndex);
                     String color = cursor.getString(colorIndex);
-                    accounts.add(new account_card(bankName, balance, color));
+                    account_card accountCard = new account_card(id,bankName, balance, color);
+                    accountCard.setId(id);
+
+                    // Add the account_card object to the accounts list
+                    accounts.add(accountCard);
                 }
             } while (cursor.moveToNext());
         }
@@ -142,27 +168,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_LOANS, KEY_ID + " = ?", new String[]{String.valueOf(loanId)});
         db.close(); // Close the database connection
     }
-    public Loan getLoans(int loanId) {
-        SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_LOANS, new String[] { KEY_ID,
-                        KEY_LOAN_NAME, KEY_BANK_NAME, KEY_DATE, KEY_MONTHLY_PAYMENT, KEY_AMOUNT_LOAN, KEY_TERM_LOAN }, KEY_ID + "=?",
-                new String[] { String.valueOf(loanId) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        Loan loan = new Loan(
-                cursor.getInt(0), // id
-                cursor.getString(1), // loan name
-                cursor.getString(2), // bank name
-                cursor.getString(3), // date
-                cursor.getString(4), // monthly payment
-                cursor.getString(5), // amount loan
-                cursor.getString(6)  // term loan
-        );
-
-        return loan;
-    }
 
     // Method to get all loans
     public List<Loan> getLoans() {

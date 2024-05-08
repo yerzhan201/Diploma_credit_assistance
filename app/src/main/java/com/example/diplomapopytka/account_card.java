@@ -7,8 +7,17 @@ public class account_card {
     private String bankName;
     private String balance;
     private String color;
+    private int id;
+    public int getId() {
+        return id;
+    }
 
-    public account_card(String bankName, String balance, String color) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public account_card(int id,String bankName, String balance, String color) {
+        this.id = id;
         this.bankName = bankName;
         this.balance = balance;
         this.color = color;

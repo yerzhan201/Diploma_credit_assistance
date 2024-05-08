@@ -16,23 +16,18 @@ import androidx.cardview.widget.CardView;
 
 import java.util.Calendar;
 
-public class new_transaction_outcome extends AppCompatActivity {
-    private String selectedCategory;
-
-    private DatabaseHelperTransactions db;
+public class update_transaction extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.income_transaction);
-        db = new DatabaseHelperTransactions(this);
+        setContentView(R.layout.update_transaction_outcome);
 
         // Initialize views
         CardView whiteBlock = findViewById(R.id.white_block);
         CardView whiteBlock2 = findViewById(R.id.white_block2);
         CardView whiteBlock3 = findViewById(R.id.white_block3);
-        Button saveButton = findViewById(R.id.save_button);
-        EditText transaction_name=findViewById(R.id.input_transaction_name);
+
         Button dateInput = findViewById(R.id.date);
         EditText inputNumber = findViewById(R.id.input_number);
         ImageView back = findViewById(R.id.back);
@@ -46,14 +41,19 @@ public class new_transaction_outcome extends AppCompatActivity {
         TextView account = findViewById(R.id.Account);
         CardView categoryCard = findViewById(R.id.category_card);
         CardView categoryCard2 = findViewById(R.id.category_card2);
-
+        CardView categoryCard3 = findViewById(R.id.category_card3);
+        CardView categoryCard4 = findViewById(R.id.category_card4);
+        CardView categoryCard5 = findViewById(R.id.category_card5);
         TextView categoryHome = findViewById(R.id.category_home);
-        TextView categoryPhone = findViewById(R.id.category_trade);
-
+        TextView categoryPhone = findViewById(R.id.category_Phone);
+        TextView categoryHealth = findViewById(R.id.category_health);
+        TextView categoryFood = findViewById(R.id.category_food);
+        TextView categoryCar = findViewById(R.id.category_car);
         //CardView cardItem = findViewById(R.id.card_item);//
         TextView cardName = findViewById(R.id.card_name);
         TextView incomeText = findViewById(R.id.get_started_string1);
         TextView outcomeText = findViewById(R.id.get_started_string2);
+
 
 
         dateInput.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,7 @@ public class new_transaction_outcome extends AppCompatActivity {
                 int mMonth = c.get(Calendar.MONTH);
                 int mDay = c.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(new_transaction_outcome.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(update_transaction.this,
                         new DatePickerDialog.OnDateSetListener() {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
@@ -75,22 +75,15 @@ public class new_transaction_outcome extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-
-
-
-        incomeLayout.setOnClickListener(new View.OnClickListener() {
+        // Set click listeners
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                outcomeLayout.setSelected(true);
-                incomeLayout.setSelected(false);
-                incomeText.setSelected(false);
-                outcomeText.setSelected(true);
-                Intent intent = new Intent(new_transaction_outcome.this, new_transaction_income.class);
-                startActivity(intent);
+                // Handle back button click
             }
-            // Save data for outcome
-
         });
+
+
 
 
         View.OnClickListener cardClickListener = new View.OnClickListener() {
@@ -99,37 +92,21 @@ public class new_transaction_outcome extends AppCompatActivity {
                 // Deselect all cards
                 categoryCard.setSelected(false);
                 categoryCard2.setSelected(false);
-
+                categoryCard3.setSelected(false);
+                categoryCard4.setSelected(false);
+                categoryCard5.setSelected(false);
 
                 // Select the clicked card
-                TextView textView = v.findViewById(v.getId() == R.id.category_card ? R.id.category_home : R.id.category_trade);
-                selectedCategory = textView.getText().toString();
                 v.setSelected(true);
             }
         };
 
         categoryCard.setOnClickListener(cardClickListener);
         categoryCard2.setOnClickListener(cardClickListener);
+        categoryCard3.setOnClickListener(cardClickListener);
+        categoryCard4.setOnClickListener(cardClickListener);
+        categoryCard5.setOnClickListener(cardClickListener);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int id = getIntent().getIntExtra("id", -1);
-                String transactionName = transaction_name.getText().toString();
-                String sumString = inputNumber.getText().toString();
-                String sum = String.valueOf(Double.parseDouble(sumString));
-                String date = dateInput.getText().toString();
-                String category = selectedCategory;
-                String type = "outcome";
-
-                Transaction transaction = new Transaction(id,transactionName,sum, category, type);
-                db.addTransaction(transactionName, category, Double.parseDouble(sum), type);
-
-                // Handle save button click
-                Intent intent = new Intent(new_transaction_outcome.this, history.class);
-                startActivity(intent);
-            }
-        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +119,15 @@ public class new_transaction_outcome extends AppCompatActivity {
         whiteBlock.setCardElevation(0f);
         whiteBlock2.setCardElevation(0f);
         whiteBlock3.setCardElevation(0f);
-        saveButton.setElevation(0f);
 
+        totalBalanceText.setText("New transaction");
+        category.setText("Category");
+        account.setText("Account");
+        categoryHome.setText("Home");
+        categoryPhone.setText("Phone");
+        categoryHealth.setText("Health");
+        categoryFood.setText("Food");
+        categoryCar.setText("Car");
+        cardName.setText("₸ 250 000. 02 ");
     }
 }

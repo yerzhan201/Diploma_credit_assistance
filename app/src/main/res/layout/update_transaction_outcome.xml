@@ -486,24 +486,36 @@
     </ScrollView>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
 
-        <!-- Your other views here -->
+        >
 
         <Button
-            android:id="@+id/save_button"
+            android:id="@+id/update_loan_button"
             android:layout_width="342dp"
             android:layout_height="60dp"
-            android:text="Save"
-            android:textColor="#FFFFFF"
+            android:layout_above="@+id/delete_button"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/rectangle_2_ek2_shape"
+            android:text="Update"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:text="Delete"
             android:textAllCaps="false"
+            android:textColor="#FF0000"
             android:textSize="16sp"
-
-            />
+            android:paddingBottom="20dp"/>
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,10 +13,11 @@ public class DatabaseHelperTransactions extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "transactions.db";
     private static final String TABLE_NAME = "transactions";
     private static final String COL_1 = "ID";
-    //private static final String COL_2 = "TRANSACTION_NAME";
+    private static final String COL_2 = "TRANSACTION_NAME";
     private static final String COL_3 = "CATEGORY";
     private static final String COL_4 = "SUM";
-    private static final String COL_5 = "TYPE"; // New column for transaction type
+    private static final String COL_5 = "TYPE";
+    private static final String COL_6 = "DATE";// New column for transaction type
 
     public DatabaseHelperTransactions(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -37,14 +38,34 @@ public class DatabaseHelperTransactions extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
-    public boolean addTransaction(String category, double sum) {
+    public boolean addTransaction(String transactionName,String category, double sum,String type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2, transactionName);
         contentValues.put(COL_3, category);
         contentValues.put(COL_4, sum);
-        //contentValues.put(COL_5, type);
+        contentValues.put(COL_5, type);
+
+
         long result = db.insert(TABLE_NAME, null, contentValues);
         return result != -1;
+    }
+    public boolean updateTransaction(int id, String transactionName,  double sum, String category, String type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2, transactionName);
+        contentValues.put(COL_3, category);
+        contentValues.put(COL_4, sum);
+        contentValues.put(COL_5, type);
+        int result = db.update(TABLE_NAME, contentValues, COL_1 + " = ?", new String[]{String.valueOf(id)});
+        return result > 0;
+    }
+
+    // Method to delete a transaction
+    public boolean deleteTransaction(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_NAME, COL_1 + " = ?", new String[]{String.valueOf(id)});
+        return result > 0;
     }
 
     public List<Transaction> getAllTransactions() {
@@ -52,12 +73,18 @@ public class DatabaseHelperTransactions extends SQLiteOpenHelper {
         Cursor cursor = getAllData();
 
         while (cursor.moveToNext()) {
+            int idIndex = cursor.getColumnIndex(COL_1);
+            int nameIndex = cursor.getColumnIndex(COL_2);
             int sumIndex = cursor.getColumnIndex(COL_4);
             int categoryIndex = cursor.getColumnIndex(COL_3);
             int typeIndex = cursor.getColumnIndex(COL_5);
+            int dateIndex = cursor.getColumnIndex(COL_6);
 
-            if (sumIndex != -1 && categoryIndex != -1 && typeIndex != -1) {
+            if (idIndex != -1 && nameIndex != -1 && sumIndex != -1 && categoryIndex != -1 && typeIndex != -1) {
                 Transaction transaction = new Transaction(
+                        cursor.getInt(idIndex),
+                        cursor.getString(nameIndex),
+
                         String.valueOf(cursor.getDouble(sumIndex)),
                         cursor.getString(categoryIndex),
                         cursor.getString(typeIndex)
@@ -68,5 +95,23 @@ public class DatabaseHelperTransactions extends SQLiteOpenHelper {
 
         cursor.close();
         return transactions;
+    }
+    public Transaction getTransaction(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, null, COL_1 + " = ?", new String[]{String.valueOf(id)}, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Transaction transaction = new Transaction(
+                cursor.getInt(0), // Assuming the ID is at index 0
+                cursor.getString(1), // Assuming the TRANSACTION_NAME is at index 1
+                cursor.getString(2), // Assuming the CATEGORY is at index 2
+                cursor.getString(3), // Assuming the SUM is at index 3
+                cursor.getString(4) // Assuming the TYPE is at index 4
+        );
+
+        cursor.close();
+        return transaction;
     }
 }

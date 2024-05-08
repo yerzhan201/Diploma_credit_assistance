@@ -28,14 +28,17 @@ public class accounts extends AppCompatActivity {
         recyclerViewAccounts = findViewById(R.id.recyclerViewaccounts);
         addAccount = findViewById(R.id.add_account);
 
+
+
         // Initialize the DatabaseHelper
         dbHelper = new DatabaseHelper(this);
 
         // Get all accounts from the database
-        List<account_card> accounts = dbHelper.getAllAccounts();
+        List<account_card> accountCards = dbHelper.getAllAccounts();
 
         // Create an adapter for the RecyclerView
-        card_adapter adapter = new card_adapter(accounts);
+        card_adapter adapter = new card_adapter(accountCards);
+
 
         // Set the adapter for the RecyclerView
         recyclerViewAccounts.setAdapter(adapter);
@@ -57,13 +60,21 @@ public class accounts extends AppCompatActivity {
                 // Handle add account button click
             }
         });
+        back1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(accounts.this, main_page.class);
+                startActivity(intent); // This will close the current activity and go back to the main_page
+            }
+        });
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
         // Update the accounts list when returning from the new_account_form activity
-        List<account_card> accounts = dbHelper.getAllAccounts();
-        ((card_adapter) recyclerViewAccounts.getAdapter()).setAccounts(accounts);
+        List<account_card> accountCards = dbHelper.getAllAccounts();
+        ((card_adapter) recyclerViewAccounts.getAdapter()).setAccounts(accountCards);
     }
 }

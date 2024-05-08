@@ -18,6 +18,7 @@ import java.util.Calendar;
 
 public class new_transaction_income extends AppCompatActivity {
     private String selectedCategory;
+
     private DatabaseHelperTransactions db;
 
     @Override
@@ -31,6 +32,7 @@ public class new_transaction_income extends AppCompatActivity {
         CardView whiteBlock2 = findViewById(R.id.white_block2);
         CardView whiteBlock3 = findViewById(R.id.white_block3);
         Button saveButton = findViewById(R.id.save_button);
+        EditText transaction_name=findViewById(R.id.input_transaction_name);
         Button dateInput = findViewById(R.id.date);
         EditText inputNumber = findViewById(R.id.input_number);
         ImageView back = findViewById(R.id.back);
@@ -112,14 +114,16 @@ public class new_transaction_income extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int id = getIntent().getIntExtra("id", -1);
+                String transactionName = transaction_name.getText().toString();
                 String sumString = inputNumber.getText().toString();
                 String sum = String.valueOf(Double.parseDouble(sumString));
                 String date = dateInput.getText().toString();
                 String category = selectedCategory;
                 String type = "income";
 
-                Transaction transaction = new Transaction(sum, category, type);
-                db.addTransaction(category, Double.parseDouble(sum));
+                Transaction transaction = new Transaction(id,transactionName,sum, category, type);
+                db.addTransaction(transactionName, category, Double.parseDouble(sum), type);
 
                 // Handle save button click
                 Intent intent = new Intent(new_transaction_income.this, history.class);

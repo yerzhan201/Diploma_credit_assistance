@@ -1,5 +1,6 @@
 package com.example.diplomapopytka;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction transaction = transactions.get(position);
         holder.category.setText(transaction.getCategory());
         holder.transactionSum.setText(transaction.getSum());
+        holder.transactionName.setText(transaction.getName());
 
 
         if ("income".equals(transaction.getType())) {
@@ -43,13 +45,31 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView category;
+        TextView transactionName;
         TextView transactionSum;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
+            transactionName = itemView.findViewById(R.id.transaction_name);
             category = itemView.findViewById(R.id.category);
             transactionSum = itemView.findViewById(R.id.transaction_sum);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    Transaction transaction = transactions.get(position);
+                    int id = transaction.getId(); // Assuming your Transaction class has a getId method
+
+                    Intent intent = new Intent(v.getContext(), update_transaction_income.class); // Replace with your edit activity class name
+                    intent.putExtra("id", id);
+                    intent.putExtra("transactionName", transaction.getName());
+                    intent.putExtra("sum", transaction.getSum());
+                    intent.putExtra("category", transaction.getCategory());
+                    intent.putExtra("type", transaction.getType());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
 
     }

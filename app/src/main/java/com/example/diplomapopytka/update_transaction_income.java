@@ -3,6 +3,7 @@ package com.example.diplomapopytka;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -11,27 +12,32 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import java.util.Calendar;
 
-public class new_transaction_outcome extends AppCompatActivity {
-    private String selectedCategory;
+public class update_transaction_income extends AppCompatActivity {
+    //private String selectedCategory;
 
     private DatabaseHelperTransactions db;
+    private String selectedCategory = "Default Category"; // Set default category
+    private String type = "income";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.income_transaction);
+        setContentView(R.layout.update_income_transaction);
         db = new DatabaseHelperTransactions(this);
+        int id = getIntent().getIntExtra("id", -1);
+        Transaction transaction = db.getTransaction(id);
 
         // Initialize views
         CardView whiteBlock = findViewById(R.id.white_block);
         CardView whiteBlock2 = findViewById(R.id.white_block2);
         CardView whiteBlock3 = findViewById(R.id.white_block3);
-        Button saveButton = findViewById(R.id.save_button);
+
         EditText transaction_name=findViewById(R.id.input_transaction_name);
         Button dateInput = findViewById(R.id.date);
         EditText inputNumber = findViewById(R.id.input_number);
@@ -49,6 +55,8 @@ public class new_transaction_outcome extends AppCompatActivity {
 
         TextView categoryHome = findViewById(R.id.category_home);
         TextView categoryPhone = findViewById(R.id.category_trade);
+        Button updateButton = findViewById(R.id.update_loan_button);
+        Button deleteButton = findViewById(R.id.delete_button);
 
         //CardView cardItem = findViewById(R.id.card_item);//
         TextView cardName = findViewById(R.id.card_name);
@@ -64,7 +72,7 @@ public class new_transaction_outcome extends AppCompatActivity {
                 int mMonth = c.get(Calendar.MONTH);
                 int mDay = c.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(new_transaction_outcome.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(update_transaction_income.this,
                         new DatePickerDialog.OnDateSetListener() {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
@@ -75,22 +83,49 @@ public class new_transaction_outcome extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+        transaction_name.setText(transaction.getName());
+        dateInput.setText(transaction.getDate()); // Set the dateInput to the transaction's date
+        inputNumber.setText(String.valueOf(transaction.getSum()));
+        selectedCategory = transaction.getCategory();
 
 
-
-        incomeLayout.setOnClickListener(new View.OnClickListener() {
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                outcomeLayout.setSelected(true);
-                incomeLayout.setSelected(false);
-                incomeText.setSelected(false);
-                outcomeText.setSelected(true);
-                Intent intent = new Intent(new_transaction_outcome.this, new_transaction_income.class);
-                startActivity(intent);
-            }
-            // Save data for outcome
+                AlertDialog.Builder builder = new AlertDialog.Builder(update_transaction_income.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.delete_loan, null); // replace with your layout file name
+                builder.setView(dialogView);
+                AlertDialog alertDialog = builder.create();
 
+                Button yesButton = dialogView.findViewById(R.id.button_yes);
+                yesButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Delete the loan from the database
+                        db.deleteTransaction(id);
+
+                        // Go back to the add_loan activity
+                        Intent intent = new Intent(update_transaction_income.this, history.class);
+                        startActivity(intent);
+                    }
+                });
+
+                Button noButton = dialogView.findViewById(R.id.button_no);
+                noButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Handle no button click
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.show();
+            }
         });
+
+
+
+
 
 
         View.OnClickListener cardClickListener = new View.OnClickListener() {
@@ -111,7 +146,7 @@ public class new_transaction_outcome extends AppCompatActivity {
         categoryCard.setOnClickListener(cardClickListener);
         categoryCard2.setOnClickListener(cardClickListener);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int id = getIntent().getIntExtra("id", -1);
@@ -120,13 +155,14 @@ public class new_transaction_outcome extends AppCompatActivity {
                 String sum = String.valueOf(Double.parseDouble(sumString));
                 String date = dateInput.getText().toString();
                 String category = selectedCategory;
-                String type = "outcome";
+                String type = "income";
+                DatabaseHelperTransactions db = new DatabaseHelperTransactions(update_transaction_income.this);
 
                 Transaction transaction = new Transaction(id,transactionName,sum, category, type);
-                db.addTransaction(transactionName, category, Double.parseDouble(sum), type);
+                db.updateTransaction(id,transactionName,Double.parseDouble(sum), category, type);
 
                 // Handle save button click
-                Intent intent = new Intent(new_transaction_outcome.this, history.class);
+                Intent intent = new Intent(update_transaction_income.this, history.class);
                 startActivity(intent);
             }
         });
@@ -142,7 +178,7 @@ public class new_transaction_outcome extends AppCompatActivity {
         whiteBlock.setCardElevation(0f);
         whiteBlock2.setCardElevation(0f);
         whiteBlock3.setCardElevation(0f);
-        saveButton.setElevation(0f);
+
 
     }
 }

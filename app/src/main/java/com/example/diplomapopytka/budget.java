@@ -23,6 +23,7 @@ public class budget extends AppCompatActivity {
     private SQLiteDatabase database;
     private EditText homeInput;
     private EditText kommunalkaInput;
+    private TextView percentage;
     private EditText internetInput;
     private TextView planTextCategory;
     private TextView planTextCategory2;
@@ -35,7 +36,7 @@ public class budget extends AppCompatActivity {
     private TextView plansum;
     private TextView plancomment;
     private ProgressBar circularProgressbar;
-    private TextView percentage;
+    //private TextView percentage;
     private EditText input_kaspi;
     private EditText input_forte;
     private EditText input_halyk;
@@ -64,10 +65,7 @@ public class budget extends AppCompatActivity {
         TextView totalBalanceText = findViewById(R.id.total_balance_text);
 
         // Find the Plan RelativeLayout
-        RelativeLayout plan = findViewById(R.id.Plan);
-
-        // Find the remain RelativeLayout
-        RelativeLayout remain = findViewById(R.id.remain);
+        percentage = findViewById(R.id.percentage);
 
         // Find the input_number TextView
         TextView inputNumber = findViewById(R.id.input_number);
@@ -82,7 +80,6 @@ public class budget extends AppCompatActivity {
         TextView plancomment = findViewById(R.id.Plancomment);
 
         // Find the circularProgressbar ProgressBar
-        ProgressBar circularProgressbar = findViewById(R.id.circularProgressbar);
 
         // Find the percentage TextView
         TextView percentage = findViewById(R.id.percentage);
@@ -125,12 +122,9 @@ public class budget extends AppCompatActivity {
         inputInternet.addTextChangedListener(textWatcher);
 
         // Set a click listener for the Plan RelativeLayout
-        plan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle the click event
-            }
-        });
+        bottomNavigationView.setSelectedItemId(R.id.navigation_add);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_budget);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             // Handle navigation view item clicks here.
             int id = item.getItemId();
@@ -160,12 +154,7 @@ public class budget extends AppCompatActivity {
         });
 
         // Set a click listener for the remain RelativeLayout
-        remain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle the click event
-            }
-        });
+
     }
     private void calculateTotal() {
         double home = parseDouble(inputHome.getText().toString());
@@ -183,8 +172,9 @@ public class budget extends AppCompatActivity {
         planComment.setText(String.format("%.2f ₸ left to budget", remaining));
         planTextCategory2.setText(String.format("%.2f ₸", total_sum));
         planTextCategory.setText(String.format("%.2f ₸", total));
-        int progress = (int) ((grandTotal / earnings) * 100); // Calculate the percentage of total sum in earnings
+        int progress = earnings != 0 ? (int) ((grandTotal / earnings) * 100) : 0;
         circularProgressbar.setProgress(progress);
+        percentage.setText(String.format("%d%%", progress));
     }
     private double parseDouble(String s) {
         try {
@@ -205,7 +195,7 @@ public class budget extends AppCompatActivity {
         editor.putString("earnings", inputEarnings.getText().toString());
         editor.putString("total", planTextCategory.getText().toString());
         editor.putInt("progress", circularProgressbar.getProgress()); // Save the progress of the ProgressBar
-
+        editor.putString("percentage", percentage.getText().toString());
         editor.apply();
     }
 
@@ -219,7 +209,21 @@ public class budget extends AppCompatActivity {
         inputCom.setText(sharedPreferences.getString("com", ""));
         inputInternet.setText(sharedPreferences.getString("internet", ""));
         calculateTotal();
+        planTextCategory2.setText(sharedPreferences.getString("total_sum", ""));
+        planTextCategory.setText(sharedPreferences.getString("total", ""));
+        percentage.setText(sharedPreferences.getString("percentage", ""));
         circularProgressbar.setProgress(sharedPreferences.getInt("progress", 0));
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        calculateTotal();
+        saveValues();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        calculateTotal();
     }
 
 }
